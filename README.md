@@ -29,6 +29,19 @@
    demo程序的控制代码为，用的方法为查表法，要使用相关的电机参数。
 ##
   __builtin 函数的使用 F1 搜索__builtin 可以得到具体的DSP 函数 
-# 去你大爷
+# 去你大爷的
+#电机启动更快的方式
+  同时给Q轴和D轴加电流 这样起来的速度回更快 成功率会更高
+  方式可以根据电机带负载特性来：
+  ```C
+	CtrlParm.qVqRef = REFINAMPS(INITIALTORQUE);
+    CtrlParm.qVdRef = REFINAMPS(INITIALTORQUE_D); // D轴电流值约Q轴的1/2
+    //并且在进入闭环后 在D轴计算PID之前 判断角度值将D轴的电流清零
+	  if(Theta_error < 800) //800约8度
+        {
+            if(CtrlParm.qVdRef > 0)
+                CtrlParm.qVdRef --;
+        }
+  ```
    
    
