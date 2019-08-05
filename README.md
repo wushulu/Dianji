@@ -43,9 +43,8 @@
             if(CtrlParm.qVdRef > 0)
                 CtrlParm.qVdRef --;
         }
-  ```
-  <br>
-  ## 电机速度测量
+        
+## 电机速度测量
     ```C
          if( Hall_r!=hall_value)
           {
@@ -58,6 +57,7 @@
             }
            Current_speed= TIMER2_TO_RPM/Timer2Average; // HZ/s   TIMER2_TO_RPM is timers TIMER2_TO_RPM
            Crruent_RPM = Current_speed*20/16; //Crruent_RPM = Current_speed*60/6/8 (per RPM hall chang 6timers motor 8 pole pairs)
-  ```
+## 其他
+   待更新<br>
    
    
