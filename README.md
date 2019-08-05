@@ -35,13 +35,13 @@
   同时给Q轴和D轴加电流 这样起来的速度回更快 成功率会更高<br>
   方式可以根据电机带负载特性来：<br>
   ```C
-	CtrlParm.qVqRef = REFINAMPS(INITIALTORQUE);
-  CtrlParm.qVdRef = REFINAMPS(INITIALTORQUE_D); // D轴电流值约Q轴的1/2
+    CtrlParm.qVqRef = REFINAMPS(INITIALTORQUE);
+     CtrlParm.qVdRef = REFINAMPS(INITIALTORQUE_D); // D轴电流值约Q轴的1/2
     //并且在进入闭环后 在D轴计算PID之前 判断角度值将D轴的电流清零
-	if(Theta_error < 800) //800约8度
+    if(Theta_error < 800) //800约8度
     {
       if(CtrlParm.qVdRef > 0)
-          CtrlParm.qVdRef --;
+        CtrlParm.qVdRef --;
     }
   ```
 
