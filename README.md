@@ -28,20 +28,36 @@
    同智代码使用的弱磁控制，看上去为PID控制，但是前面判读条件有问题，代码在前面的判断条件上，使之一直运行一种条件。而且进入弱磁的控制条件是根据设置速度来判断的<br>
    demo程序的控制代码为，用的方法为查表法，要使用相关的电机参数。
 ##
-  __builtin 函数的使用 F1 搜索__builtin 可以得到具体的DSP 函数 
+  __builtin 函数的使用 F1 搜索__builtin 可以得到具体的DSP 函数 <br>
 ##去你大爷的
+<br>
 ##电机启动更快的方式
   同时给Q轴和D轴加电流 这样起来的速度回更快 成功率会更高<br>
   方式可以根据电机带负载特性来：<br>
   ```C
 	CtrlParm.qVqRef = REFINAMPS(INITIALTORQUE);
-    CtrlParm.qVdRef = REFINAMPS(INITIALTORQUE_D); // D轴电流值约Q轴的1/2<br>
+    CtrlParm.qVdRef = REFINAMPS(INITIALTORQUE_D); // D轴电流值约Q轴的1/2
     //并且在进入闭环后 在D轴计算PID之前 判断角度值将D轴的电流清零
 	  if(Theta_error < 800) //800约8度
         {
             if(CtrlParm.qVdRef > 0)
                 CtrlParm.qVdRef --;
         }
+  ```
+  <br>
+  ##电机速度测量
+    ```C
+         if( Hall_r!=hall_value)
+          {
+            T2CONbits.TON = 0;
+            Timer2Average = ((Timer2Average + Timer2Value + 2*TMR2)>>2);
+    	    	Timer2Value = TMR2;
+    	      TMR2 = 0;
+            Hall_r=hall_value;
+            T2CONbits.TON = 1;
+            }
+           Current_speed= TIMER2_TO_RPM/Timer2Average; // HZ/s   TIMER2_TO_RPM is timers TIMER2_TO_RPM
+           Crruent_RPM = Current_speed*20/16; //Crruent_RPM = Current_speed*60/6/8 (per RPM hall chang 6timers motor 8 pole pairs)
   ```
    
    
