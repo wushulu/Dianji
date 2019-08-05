@@ -36,7 +36,7 @@
   方式可以根据电机带负载特性来：<br>
   ```C
     CtrlParm.qVqRef = REFINAMPS(INITIALTORQUE);
-     CtrlParm.qVdRef = REFINAMPS(INITIALTORQUE_D); // D轴电流值约Q轴的1/2
+    CtrlParm.qVdRef = REFINAMPS(INITIALTORQUE_D); // D轴电流值约Q轴的1/2
     //并且在进入闭环后 在D轴计算PID之前 判断角度值将D轴的电流清零
     if(Theta_error < 800) //800约8度
     {
@@ -61,6 +61,7 @@
   ```
 
 ## 其他
+   有关dspic 调高速度和降低功率的方案<br>
    待更新<br>
    
    
