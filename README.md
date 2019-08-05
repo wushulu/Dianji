@@ -36,17 +36,17 @@
   方式可以根据电机带负载特性来：<br>
   ```C
 	CtrlParm.qVqRef = REFINAMPS(INITIALTORQUE);
-    CtrlParm.qVdRef = REFINAMPS(INITIALTORQUE_D); // D轴电流值约Q轴的1/2
+  CtrlParm.qVdRef = REFINAMPS(INITIALTORQUE_D); // D轴电流值约Q轴的1/2
     //并且在进入闭环后 在D轴计算PID之前 判断角度值将D轴的电流清零
-	  if(Theta_error < 800) //800约8度
-        {
-            if(CtrlParm.qVdRef > 0)
-                CtrlParm.qVdRef --;
-        }
+	if(Theta_error < 800) //800约8度
+    {
+      if(CtrlParm.qVdRef > 0)
+          CtrlParm.qVdRef --;
+    }
   ```
 
 ## 电机速度测量
-    ```C
+  ```C
          if( Hall_r!=hall_value)
           {
             T2CONbits.TON = 0;
@@ -58,7 +58,8 @@
             }
            Current_speed= TIMER2_TO_RPM/Timer2Average; // HZ/s   TIMER2_TO_RPM is timers TIMER2_TO_RPM
            Crruent_RPM = Current_speed*20/16; //Crruent_RPM = Current_speed*60/6/8 (per RPM hall chang 6timers motor 8 pole pairs)
-           
+  ```
+
 ## 其他
    待更新<br>
    
