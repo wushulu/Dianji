@@ -56,7 +56,7 @@
             Hall_r=hall_value;
             T2CONbits.TON = 1;
             }
-           Current_speed= TIMER2_TO_RPM/Timer2Average; // HZ/s   TIMER2_TO_RPM is timers frequency
+           Current_speed= TIMER2_TO_RPM/Timer2Average; // HZ/s   TIMER2_TO_RPM is timer2 frequency
            Crruent_RPM = Current_speed*20/16; //Crruent_RPM = Current_speed*60/6/8 (per RPM hall chang 6timers motor 8 pole pairs)
   ```
 
