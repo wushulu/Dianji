@@ -72,5 +72,6 @@
    控制电机功耗主要是控制VS 限制VS的输出 可以根据Q轴的电流大小来确定调整VS的输出。<br>
    有关dspic 调高速度和降低功率的方案<br>
    待更新<br>
+   git can not work<br>
    
    
